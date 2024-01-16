@@ -47,8 +47,8 @@ class TestBaseModel(unittest.TestCase):
 
     def test__with_kwargs(self):
         date_today = datetime.today()
-        date_today_iso = date_today.isoformat()
-        model = BaseModel(id="123", created_at=date_today_iso, updated_at=date_today_iso)
+        dt_i = date_today.isoformat()
+        model = BaseModel(id="123", created_at=dt_i, updated_at=dt_i)
         self.assertEqual(model.id, "123")
         self.assertEqual(model.created_at, date_today)
         self.assertEqual(model.updated_at, date_today)
@@ -66,6 +66,7 @@ class TestBaseModel(unittest.TestCase):
     def test_contrast_to_dict_dunder_dict(self):
         model = BaseModel()
         self.assertNotEqual(model.to_dict(), model.__dict__)
+
 
 if __name__ == '__main__':
     unittest.main()

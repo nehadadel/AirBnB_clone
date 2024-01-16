@@ -38,5 +38,6 @@ class TestAmenity(unittest.TestCase):
         self.assertIn("[Amenity]", str_representation)
         self.assertIn("'name': ''", str_representation)
 
+
 if __name__ == '__main__':
     unittest.main()

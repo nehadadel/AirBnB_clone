@@ -39,5 +39,7 @@ class BaseModel:
         dic_instance['created_at'] = self.created_at.isoformat()
         dic_instance['updated_at'] = self.updated_at.isoformat()
         dic_instance['__class__'] = self.__class__.__name__
-        dic_instance = {key: value for key, value in dic_instance.items() if value}
+        dic_instance = {
+            key: value for key, value in dic_instance.items() if value
+        }
         return dic_instance

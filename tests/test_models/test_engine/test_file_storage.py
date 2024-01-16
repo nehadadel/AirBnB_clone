@@ -38,7 +38,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(type(FileStorage()), FileStorage)
 
     def test_new_with_args(self):
-         with self.assertRaises(TypeError):
+        with self.assertRaises(TypeError):
             models.storage.new(BaseModel(), 1)
 
     def test_new_empty(self):
@@ -73,7 +73,7 @@ class TestFileStorage(unittest.TestCase):
             self.assertIn("Review." + rv.id, save_text)
 
     def test_reload(self):
-        model= BaseModel()
+        model = BaseModel()
         us = User()
         st = State()
         pl = Place()
@@ -97,5 +97,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn("City." + ct.id, obj)
         self.assertIn("Amenity." + am.id, obj)
         self.assertIn("Review." + rv.id, obj)
+
+
 if __name__ == '__main__':
     unittest.main()
