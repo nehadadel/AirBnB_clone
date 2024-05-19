@@ -27,14 +27,15 @@ class BaseModel:
         """
         init att
         """
-	if kwargs:
-		self.id = kwargs['id']
-		self.created_at = datetime.strptime((kwargs['created_at']), ft)
-		self.updated_at = datetime((kwargs['updated_at']), ft)
-	else:
-        	self.id = str(uuid4())
-        	self.created_at = datetime.utcnow()
-        	self.updated_at = datetime.utcnow()
+        if kwargs:
+            ft = "%Y-%m-%dT%H:%M:%S.%f"
+            self.id = kwargs['id']
+            self.created_at = datetime.strptime((kwargs['created_at']), ft)
+            self.updated_at = datetime((kwargs['updated_at']), ft)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.utcnow()
+            self.updated_at = datetime.utcnow()
 
     def __str__(self):
         """
