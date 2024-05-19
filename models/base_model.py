@@ -24,22 +24,30 @@ class BaseModel:
 
     """
     def __init__(self):
-        """init att"""
+        """
+        init att
+        """
         self.id = str(uuid4())
         self.created_at = datetime.utcnow()
         self.updated_at = datetime.utcnow()
 
     def __str__(self):
-        """should print: [<class name>] (<self.id>) <self.__dict__>"""
+        """
+        should print: [<class name>] (<self.id>) <self.__dict__>
+        """
         class_name = self.__class__.__name__
         return ("[{}] ({}){}".format(class_name, self.id, self.__dict__))
 
     def save(self):
-        """updates updated_at with the current datetime"""
+        """
+        updates updated_at with the current datetime
+        """
         self.updated_at = datetime.utcnow()
 
     def to_dict(self):
-        """ returns a dictionary  __dict__ of the instance:"""
+        """
+        returns a dictionary  __dict__ of the instance:
+        """
         dictionary_class = self.__dict__
         dictionary_class['__class__'] = self.__class__.__name__
         dictionary_class['created_at'] = self.created_at.isoformat()
