@@ -36,7 +36,7 @@ class BaseModel:
         should print: [<class name>] (<self.id>) <self.__dict__>
         """
         class_name = self.__class__.__name__
-        return ("[{}]({}){}".format(class_name, self.id, self.__dict__))
+        return ("[{}] ({}) {}".format(class_name, self.id, self.__dict__))
 
     def save(self):
         """
