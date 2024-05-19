@@ -30,7 +30,7 @@ class BaseModel:
 	if kwargs:
 		self.id = kwargs['id']
 		self.created_at = datetime.strptime((kwargs['created_at']), ft)
-		self.updated_at = datetime((kwargs['updated_at']), ft)
+		self.updated_at = datetime.strptime((kwargs['updated_at']), ft)
 	else:
         	self.id = str(uuid4())
         	self.created_at = datetime.utcnow()
