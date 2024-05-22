@@ -7,7 +7,6 @@ from uuid import uuid4
 from datetime import datetime
 import models
 
-
 class BaseModel:
     """Custom base for all the classes in the AirBnb console project
 
@@ -38,6 +37,7 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.utcnow()
             self.updated_at = datetime.utcnow()
+            models.storage.new(self)
 
     def __str__(self):
         """
@@ -50,6 +50,7 @@ class BaseModel:
         """
         updates updated_at with the current datetime
         """
+        models.storage.save()
         self.updated_at = datetime.utcnow()
 
     def to_dict(self):
