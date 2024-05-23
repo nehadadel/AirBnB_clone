@@ -57,8 +57,14 @@ class BaseModel:
         """
         returns a dictionary  __dict__ of the instance:
         """
-        dictionary_class = self.__dict__
+        dictionary_class = self.__dict__.copy()
         dictionary_class['__class__'] = self.__class__.__name__
-        dictionary_class['created_at'] = self.created_at.isoformat()
-        dictionary_class['updated_at'] = self.updated_at.isoformat()
+        if isinstance(self.created_at, datetime):
+            dictionary_class['created_at'] = self.created_at.isoformat()
+        else:
+            dictionary_class['created_at'] = self.created_at
+        if isinstance(self.updated_at, datetime):
+            dictionary_class['updated_at'] = self.updated_at.isoformat()
+        else :
+            dictionary_class['updated_at'] = self.updated_at
         return dictionary_class
