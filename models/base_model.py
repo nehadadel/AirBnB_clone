@@ -35,8 +35,7 @@ class BaseModel:
                     setattr(self, key, value)
         else:
             self.id = str(uuid4())
-            self.created_at = datetime.utcnow()
-            self.updated_at = datetime.utcnow()
+            self.created_at = self.updated_at = datetime.utcnow()
             models.storage.new(self)
 
     def __str__(self):
@@ -50,8 +49,8 @@ class BaseModel:
         """
         updates updated_at with the current datetime
         """
-        models.storage.save()
         self.updated_at = datetime.utcnow()
+        models.storage.save()
 
     def to_dict(self):
         """
