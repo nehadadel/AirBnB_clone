@@ -89,6 +89,20 @@ class HBNBCommand(cmd.Cmd):
             return
         del obj_instances[key]
         storage.save()
-        
+
+    def do_all(self, line):
+        args = line.split()
+        objs = storage.all()
+        if len(args) == 0:
+            print(["{}".format(str(v)) for k, v in objs.items()])
+            return
+        else:
+            if not self.validate_classname(args):
+                return
+            else:
+                print(["{}".format(str(v))
+                  for k, v in objs.items() if type(v).__name__ == args[0]])
+                return
+
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
