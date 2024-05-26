@@ -28,7 +28,7 @@ class HBNBCommand(cmd.Cmd):
         """an empty line shouldn’t execute anything"""
         return
 
-    def validate_classname(args, check_id=False):
+    def validate_classname(self, args, check_id=False):
         """
         Runs checks on args to validate classname entry.
         """
@@ -62,8 +62,17 @@ class HBNBCommand(cmd.Cmd):
         Prints the string representation of an instance based on the class name and id.
         Ex: $ show BaseModel 1234-1234-1234.
         """
+        args = line.split()
         if not self.validate_classname(args, check_id=True):
             return
+        obj_instances = storage.all()
+        key = "{}.{}".format(args[0], args[1])
+        req_instance = obj_instances.get(key, None)
+        if req_instance is None:
+            print("** no instance found **")
+        else:
+            print(req_instance)
+
         
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
