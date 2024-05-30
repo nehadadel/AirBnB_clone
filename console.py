@@ -105,6 +105,10 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
     def do_all(self, line):
+        """
+        Prints all string representation of all instances
+        based or not on the class name
+        """
         args = line.split()
         objs = storage.all()
         if len(args) == 0:
