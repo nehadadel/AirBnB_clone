@@ -1,0 +1,10 @@
+#!/usr/bin/python3
+"""
+Amenity class
+"""
+class Amenity(BaseModel):
+    """
+    Public class attributes:
+    name: string - empty string
+    """
+    name = ""

@@ -4,7 +4,11 @@ import os
 import json
 from models.base_model import BaseModel
 from models.user import User
-
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 class FileStorage:
     """Represent File storage engine"""
@@ -58,7 +62,8 @@ class FileStorage:
         class_name, obj_id = key.split('.')
         
         # Match the class name to the correct class and instantiate the object
-        myclasses = {'BaseModel': BaseModel, 'User': User}
+        myclasses = {'BaseModel': BaseModel, 'User': User, 'State': State,
+                     'City': City, 'Amenity': Amenity, 'Place': Place, 'Review': Review}
         if class_name in myclasses:
             return (myclasses[class_name](**data))
         else:
