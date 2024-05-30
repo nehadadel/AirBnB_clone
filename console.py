@@ -43,6 +43,20 @@ class HBNBCommand(cmd.Cmd):
             return False
         return True
 
+    def validate_attribute(self, args):
+        """
+        checks attribute
+        """
+        if len(args) < 3:
+            print("** attribute name missing **")
+            return False
+        if len(args) < 4:
+            print("** value missing **")
+            return False
+        if len(args) > 4:
+            return False
+        return True
+
     def do_create(self, line):
         """
         Creates a new instance of BaseModel,
@@ -103,6 +117,28 @@ class HBNBCommand(cmd.Cmd):
                 print(["{}".format(str(v))
                   for k, v in objs.items() if type(v).__name__ == args[0]])
                 return
+
+    def do_update(self, line):
+        """
+        Updates an instance based on the class name and id
+        by adding or updating attribute
+        (save the change into the JSON file). 
+        """
+        args = line.split()
+        if not self.validate_classname(args, check_id=True):
+            return
+        obj_instances = storage.all()
+        key = "{}.{}".format(args[0], args[1])
+        req_instance = obj_instances.get(key, None)
+        if req_instance is None:
+            print("** no instance found **")
+            return
+        if not self.validate_attribute(args):
+            return
+        setattr(req_instance, args[2], args[3].strip('"'))
+        req_instance.save()
+
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
