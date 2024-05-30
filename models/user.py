@@ -1,0 +1,26 @@
+#!/usr/bin/python3
+
+"""
+class User that inherits from BaseModel
+"""
+
+
+from uuid import uuid4
+from datetime import datetime
+import models
+from models.base_model import BaseModel
+
+
+class User(BaseModel):
+    """
+    class User that inherits from BaseModel
+    Public class attributes:
+    email: string - empty string
+    password: string - empty string
+    first_name: string - empty string
+    last_name: string - empty string
+    """
+    email = ""
+    password = ""
+    first_name = ""
+    last_name = ""

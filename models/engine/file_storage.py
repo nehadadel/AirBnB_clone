@@ -3,6 +3,7 @@
 import os
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
@@ -57,7 +58,7 @@ class FileStorage:
         class_name, obj_id = key.split('.')
         
         # Match the class name to the correct class and instantiate the object
-        myclasses = {'BaseModel': BaseModel}
+        myclasses = {'BaseModel': BaseModel, 'User': User}
         if class_name in myclasses:
             return (myclasses[class_name](**data))
         else:
